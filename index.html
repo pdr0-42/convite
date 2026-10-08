@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffd600">
+<title>Um convite para a Bruna 🌻</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    background: radial-gradient(circle at 50% 30%, #fff176, #ffd600 55%, #ffb300) fixed;
+    display: flex; align-items: center; justify-content: center;
+    padding: max(14px, env(safe-area-inset-top)) 14px max(14px, env(safe-area-inset-bottom));
+    overflow-x: hidden; color: #5d3a00; text-align: center;
+    touch-action: manipulation;
+    overscroll-behavior-y: contain;
+    -webkit-text-size-adjust: 100%;
+  }
+  button { -webkit-touch-callout: none; user-select: none; -webkit-user-select: none; }
+  .card {
+    position: relative; z-index: 2;
+    background: rgba(255,255,255,.9);
+    border: 3px dashed #f9a825;
+    border-radius: 24px;
+    padding: 24px 18px; width: 100%; max-width: 520px;
+    box-shadow: 0 10px 32px rgba(120,70,0,.3);
+    animation: pop .8s ease;
+  }
+  @keyframes pop { from { transform: scale(.6) rotate(-6deg); opacity: 0; } to { transform: none; opacity: 1; } }
+  .sun { font-size: clamp(48px, 16vw, 68px); display: inline-block; animation: spin 8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  h1 { font-size: clamp(1.15rem, 5.2vw, 1.5rem); margin: 8px 0; line-height: 1.25; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .75; margin-top: 4px; }
+  p { margin: 10px 0; font-size: clamp(.95rem, 4vw, 1.05rem); line-height: 1.4; }
+  #pergunta { font-size: clamp(1.3rem, 6.5vw, 1.7rem); font-weight: bold; margin: 16px 0 8px; }
+  #msg { min-height: 2.8em; font-style: italic; font-size: .95rem; display: flex; align-items: center; justify-content: center; }
+  .botoes { display: flex; gap: 14px; align-items: center; justify-content: center; min-height: 90px; margin-top: 6px; flex-wrap: wrap; }
+  button {
+    font-family: inherit; font-weight: bold; border: none; cursor: pointer;
+    border-radius: 999px; touch-action: manipulation;
+    min-height: 48px; min-width: 48px;
+  }
+  #sim { background: #43a047; color: #fff; box-shadow: 0 6px 0 #2e7d32; padding: 14px 30px; font-size: 1.15rem; transition: font-size .2s, padding .2s; }
+  #sim:active { transform: translateY(4px); box-shadow: 0 2px 0 #2e7d32; }
+  #nao { background: #e53935; color: #fff; box-shadow: 0 5px 0 #b71c1c; padding: 12px 22px; font-size: 1rem; transition: left .25s ease, top .25s ease; animation: tentador 1.2s ease-in-out infinite; }
+  #nao.solto { position: fixed; z-index: 5; }
+  @keyframes tentador { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08) rotate(-2deg); } }
+  .aviso { background: #ffebee; color: #b71c1c; border: 2px solid #e53935; border-radius: 12px; padding: 8px 10px; font-size: .85rem; font-weight: bold; margin: 8px 0; }
+  #contador { font-size: .8rem; opacity: .8; min-height: 1.2em; margin-top: 6px; }
+  .boom { position: fixed; z-index: 6; pointer-events: none; font-size: 26px; animation: boom .9s ease-out forwards; }
+  @keyframes boom { to { transform: translate(var(--dx), var(--dy)) scale(.4); opacity: 0; } }
+
+  #final { display: none; }
+  #final h2 { font-size: clamp(1.4rem, 7vw, 1.9rem); margin: 8px 0; }
+  .detalhes { background: #fff9c4; border-radius: 16px; padding: 10px 14px; margin-top: 14px; text-align: left; }
+  .detalhes p { font-size: .95rem; margin: 6px 0; }
+  #resumo-nao { font-size: .9rem; font-style: italic; }
+  #zap {
+    display: inline-block; margin-top: 16px; background: #25d366; color: #fff; text-decoration: none;
+    font-weight: bold; padding: 14px 26px; border-radius: 999px; box-shadow: 0 5px 0 #128c4a; font-size: 1.05rem;
+  }
+
+  .petala { position: fixed; top: -50px; z-index: 1; pointer-events: none; animation: cair linear forwards; }
+  @keyframes cair { to { transform: translateY(115vh) rotate(540deg); } }
+</style>
+</head>
+<body>
+
+<div class="card" id="card">
+  <div id="inicio">
+    <div class="sun">🌻</div>
+    <h1>Bruna Aparecida Fidelis Moraes dos Santos
+      <small>(sim, o nome completo, porque o assunto é sério)</small>
+    </h1>
+    <p>Fiz uma pesquisa rigorosa e concluí que você é mais bonita que um campo inteiro de girassóis, e olha que eles passam o dia todo atrás do sol.</p>
+    <p>Por isso, com todo o respeito e um pouco de nervosismo...</p>
+    <div id="pergunta">Quer sair comigo? 🌻</div>
+    <div id="msg"></div>
+    <div class="botoes">
+      <button id="sim">SIM! 💛</button>
+      <button id="nao">Não 😢</button>
+    </div>
+    <div id="contador"></div>
+  </div>
+
+  <div id="final">
+    <div class="sun">🌻</div>
+    <h2>Eba!!! Você disse SIM! 🎉</h2>
+    <p>Meu coração está dando mais voltas que girassol seguindo o sol.</p>
+    <p id="resumo-nao"></p>
+    <div class="detalhes">
+      <p>📅 <b>Quando:</b> você escolhe o dia, eu apareço.</p>
+      <p>🍕 <b>Onde:</b> você escolhe o lugar (pode ser comida, sorvete ou campo de girassol).</p>    </div>
+    <a id="zap" href="https://wa.me/">💬 Me chama no WhatsApp!</a>
+  </div>
+</div>
+
+<script>
+  /* Coloque aqui o seu número, com código do país e DDD (ex.: 5511999999999). */
+  const WHATSAPP_NUMERO = '5511976255659';
+
+  const $ = id => document.getElementById(id);
+  const nao = $('nao'), sim = $('sim'), msg = $('msg'), pergunta = $('pergunta');
+  const vibra = p => { if (navigator.vibrate) navigator.vibrate(p); };
+  const leve = window.matchMedia('(max-width: 600px)').matches;
+
+  /* ================= botão "Não" que foge ================= */
+  const frases = [
+    "Ei, o botão fugiu! Ele também gosta de você 😅",
+    "Quase! Tenta de novo... ou não 😏",
+    "Esse botão está com defeito, só o SIM funciona 🌻",
+    "Um girassol triste murchou agora 🥀",
+    "Sério mesmo que você vai tentar de novo?",
+    "Meu cachorro imaginário está chorando 🐶",
+    "Prometo pagar o sorvete 🍦",
+    "O 'Não' foi demitido. Só sobrou o 'Sim' 💼",
+    "Desiste, o destino já decidiu 💫"
+  ];
+  const perguntas = ["Quer sair comigo? 🌻", "Tem certeza? 🥺", "Pensa direitinho... 🌼", "Última chance! 😳", "Vai, diz que sim! 💛"];
+  const rotulos = [
+    "Não 😏", "Não mesmo?! 🙄", "Tem certeza? 🕵️", "Você é teimosa 😂",
+    "Ainda não 🙃", "Erro 404: Não 🚫", "Só tem SIM aqui 🌻", "Desiste, vai 💛"
+  ];
+  let tentativas = 0, ultimoToque = 0;
+
+  function explodir() {
+    const r = nao.getBoundingClientRect();
+    const emojis = ['💥', '😂', '🌻', '💛', '🤭'];
+    for (let i = 0; i < 8; i++) {
+      const e = document.createElement('div');
+      e.className = 'boom';
+      e.textContent = emojis[i % emojis.length];
+      e.style.left = (r.left + r.width / 2) + 'px';
+      e.style.top = (r.top + r.height / 2) + 'px';
+      const ang = (Math.PI * 2 * i) / 8;
+      e.style.setProperty('--dx', Math.cos(ang) * 80 + 'px');
+      e.style.setProperty('--dy', Math.sin(ang) * 80 + 'px');
+      document.body.appendChild(e);
+      setTimeout(() => e.remove(), 1000);
+    }
+  }
+  const sobrepoe = (a, b, f) => !(a.right + f < b.left || a.left - f > b.right || a.bottom + f < b.top || a.top - f > b.bottom);
+
+  function fugir() {
+    const agora = Date.now();
+    if (agora - ultimoToque < 300) return;
+    ultimoToque = agora;
+    tentativas++;
+    nao.classList.add('solto');
+    const m = 12, w = nao.offsetWidth, h = nao.offsetHeight;
+    const maxX = Math.max(m, window.innerWidth - w - m);
+    const maxY = Math.max(m, window.innerHeight - h - m);
+    const alvoSim = sim.getBoundingClientRect();
+    let x, y;
+    for (let i = 0; i < 30; i++) {
+      x = m + Math.random() * (maxX - m);
+      y = m + Math.random() * (maxY - m);
+      if (!sobrepoe({ left: x, top: y, right: x + w, bottom: y + h }, alvoSim, 16)) break;
+    }
+    nao.style.left = x + 'px';
+    nao.style.top = y + 'px';
+    msg.textContent = frases[(tentativas - 1) % frases.length];
+    nao.textContent = rotulos[Math.min(tentativas - 1, rotulos.length - 1)];
+    $('contador').textContent = '🏆 Tentativas de dizer não: ' + tentativas;
+    explodir();
+    vibra(40);
+    pergunta.textContent = perguntas[Math.min(Math.floor(tentativas / 2), perguntas.length - 1)];
+    const maxFonte = window.innerWidth < 420 ? 1.7 : 2.3;
+    sim.style.fontSize = Math.min(1.15 + tentativas * 0.1, maxFonte) + 'rem';
+    sim.style.padding = Math.min(14 + tentativas * 2, 26) + 'px ' + Math.min(30 + tentativas * 3, 46) + 'px';
+  }
+  nao.addEventListener('touchstart', e => { e.preventDefault(); fugir(); }, { passive: false });
+  nao.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') fugir(); });
+  nao.addEventListener('click', e => { e.preventDefault(); fugir(); });
+
+  /* ================= chuva de girassóis ================= */
+  function chuva(qtd) {
+    const emojis = ['🌻', '🌼', '💛', '✨'];
+    for (let i = 0; i < qtd; i++) {
+      const p = document.createElement('div');
+      p.className = 'petala';
+      p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.fontSize = (18 + Math.random() * 24) + 'px';
+      p.style.animationDuration = (3 + Math.random() * 4) + 's';
+      p.style.animationDelay = Math.random() * 2 + 's';
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 10000);
+    }
+  }
+  chuva(leve ? 8 : 15);
+  setInterval(() => chuva(leve ? 2 : 4), 2000);
+
+  /* ================= SIM ================= */
+  sim.addEventListener('click', () => {
+    $('inicio').style.display = 'none';
+    nao.style.display = 'none';
+    $('final').style.display = 'block';
+    $('resumo-nao').textContent = tentativas === 0
+      ? "Nem tentou o botão do Não? Direto ao ponto, gostei 😎"
+      : "Você tentou dizer não " + tentativas + "x e o botão fugiu todas. Insistente, exatamente meu tipo 😂";
+    const textoZap = 'Oi! Eu disse SIM 🌻' + (tentativas ? ' (depois de tentar dizer não ' + tentativas + 'x)' : '');
+    $('zap').href = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(textoZap);
+    window.scrollTo(0, 0);
+    vibra([100, 60, 100]);
+    chuva(leve ? 30 : 60);
+    setInterval(() => chuva(leve ? 8 : 15), 2500);
+  });
+</script>
+</body>
+</html>
