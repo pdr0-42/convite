@@ -54,7 +54,7 @@
   @keyframes boom { to { transform: translate(var(--dx), var(--dy)) scale(.4); opacity: 0; } }
 
   #final { display: none; }
-  #final h2 { font-size: clamp(1.4rem, 7vw, 1.9rem); margin: 8px 0; }
+  #imagem-final { display: block; width: 100%; height: auto; border-radius: 16px; }
   .detalhes { background: #fff9c4; border-radius: 16px; padding: 10px 14px; margin-top: 14px; text-align: left; }
   .detalhes p { font-size: .95rem; margin: 6px 0; }
   #resumo-nao { font-size: .9rem; font-style: italic; }
@@ -86,13 +86,7 @@
   </div>
 
   <div id="final">
-    <div class="sun">🌻</div>
-    <h2>Eba!!! Você disse SIM! 🎉</h2>
-    <p>Meu coração está dando mais voltas que girassol seguindo o sol.</p>
-    <p id="resumo-nao"></p>
-    <div class="detalhes">
-      <p>📅 <b>Quando:</b> 17 de outubro de 2026 (sábado).</p>
-      <p>🍕 <b>Onde:</b> você escolhe o lugar (pode ser comida, sorvete ou campo de girassol).</p>    </div>
+    <img id="imagem-final" src="./Mascote%20Foguete%20GIF%20by%20Cruzeiro%20Esporte%20Clube.gif" alt="Mascote comemorando no estádio">
     <a id="zap" href="https://wa.me/">💬 Me chama no WhatsApp!</a>
   </div>
 </div>
@@ -195,9 +189,6 @@
     $('inicio').style.display = 'none';
     nao.style.display = 'none';
     $('final').style.display = 'block';
-    $('resumo-nao').textContent = tentativas === 0
-      ? "Nem tentou o botão do Não? Direto ao ponto, gostei 😎"
-      : "Você tentou dizer não " + tentativas + "x e o botão fugiu todas. Insistente, exatamente meu tipo 😂";
     const textoZap = 'Oi! Eu disse SIM 🌻' + (tentativas ? ' (depois de tentar dizer não ' + tentativas + 'x)' : '');
     $('zap').href = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(textoZap);
     window.scrollTo(0, 0);
