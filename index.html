@@ -35,7 +35,7 @@
   h1 { font-size: clamp(1.15rem, 5.2vw, 1.5rem); margin: 8px 0; line-height: 1.25; }
   h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .75; margin-top: 4px; }
   p { margin: 10px 0; font-size: clamp(.95rem, 4vw, 1.05rem); line-height: 1.4; }
-  #pergunta { font-size: clamp(1.3rem, 6.5vw, 1.7rem); font-weight: bold; margin: 16px 0 8px; }
+  #pergunta { font-size: clamp(2rem, 10vw, 2.8rem); font-weight: bold; line-height: 1.15; margin: 16px 0 8px; }
   #msg { min-height: 2.8em; font-style: italic; font-size: .95rem; display: flex; align-items: center; justify-content: center; }
   .botoes { display: flex; gap: 14px; align-items: center; justify-content: center; min-height: 90px; margin-top: 6px; flex-wrap: wrap; }
   button {
@@ -75,9 +75,8 @@
     <h1>Bruna Aparecida Fidelis Moraes dos Santos
       <small>(sim, o nome completo, porque o assunto é sério)</small>
     </h1>
-    <p>Fiz uma pesquisa rigorosa e concluí que você é mais bonita que um campo inteiro de girassóis, e olha que eles passam o dia todo atrás do sol.</p>
-    <p>Por isso, com todo o respeito e um pouco de nervosismo...</p>
-    <div id="pergunta">Quer sair comigo? 🌻</div>
+    <p>Você está sendo convidada a participar de um evento, com o Senhorito Pedro Vinicius Pinto da Silva (é meu nome, tem "pinto", sofri muito bullying por isso na escola kkkkkkkkk). Você vai se divertir, assistir a um filme (se tiver um legal que você queira ver) e comer em um lugar legal.</p>    <div id="pergunta">Quer sair comigo? 🌻</div>
+    <div class="aviso" id="aviso">⚠️ Aviso: o botão "Não" está em manutenção. Favor não clicar.</div>
     <div id="msg"></div>
     <div class="botoes">
       <button id="sim">SIM! 💛</button>
@@ -109,15 +108,12 @@
 
   /* ================= botão "Não" que foge ================= */
   const frases = [
-    "Ei, o botão fugiu! Ele também gosta de você 😅",
-    "Quase! Tenta de novo... ou não 😏",
-    "Esse botão está com defeito, só o SIM funciona 🌻",
-    "Um girassol triste murchou agora 🥀",
-    "Sério mesmo que você vai tentar de novo?",
-    "Meu cachorro imaginário está chorando 🐶",
-    "Prometo pagar o sorvete 🍦",
-    "O 'Não' foi demitido. Só sobrou o 'Sim' 💼",
-    "Desiste, o destino já decidiu 💫"
+    "⚠️ Aviso: você clicou no botão que está em manutenção. Ele ficou assustado.",
+    "⚠️ Aviso: o técnico foi chamado. Favor não clicar de novo.",
+    "⚠️ Aviso: previsão de conserto do botão \"Não\": nunca.",
+    "⚠️ Aviso: o botão \"Não\" pediu demissão. Só o \"Sim\" continua trabalhando.",
+    "⚠️ Aviso: o botão \"Não\" está de atestado. Volta depois do encontro.",
+    "⚠️ Aviso: a manutenção foi cancelada por falta de interesse. Só o \"Sim\" funciona."
   ];
   const perguntas = ["Quer sair comigo? 🌻", "Tem certeza? 🥺", "Pensa direitinho... 🌼", "Última chance! 😳", "Vai, diz que sim! 💛"];
   const rotulos = [
